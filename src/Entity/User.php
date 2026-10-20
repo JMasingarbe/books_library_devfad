@@ -1,0 +1,155 @@
+<?php
+
+namespace App\Entity;
+
+
+class User
+{
+    //Attributs
+    private ?int $id;
+    private string $firstname;
+    private string $lastname;
+    private string $email;
+    private string $password;
+    private \DateTime $createdAt;
+    private ?\DateTime $updatedAt;
+    private ?string $imgProfil;
+    private ?string $grant;
+
+    //Constructeur
+    public function __construct(
+        string $firstname,
+        string $lastname,
+        string $email,
+        string $password
+    ) {
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $this->email = $email;
+        $this->password = $password;
+        $this->createdAt = new \DateTime();
+    }
+
+    //Getters et Setters
+    //Getters et Setters
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getFirstname(): string
+    {
+        return $this->firstname;
+    }
+
+
+    public function setFirstname(string  $firstname): void
+    {
+        $this->firstname = $firstname;
+    }
+
+    public function getLastname(): string
+    {
+        return $this->lastname;
+    }
+
+
+    public function setLastname(string  $lastname): void
+    {
+        $this->lastname = $lastname;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+
+    public function setEmail(string  $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+
+    public function setPassword(string  $password): void
+    {
+        $this->password = $password;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function getImgProfil(): ?string
+    {
+        return $this->imgProfil;
+    }
+
+
+    public function setImgProfil(?string  $imgProfil): void
+    {
+        $this->imgProfil = $imgProfil;
+    }
+
+    public function getGrant(): ?string
+    {
+        return $this->grant;
+    }
+
+
+    public function setGrant(?string  $grant): void
+    {
+        $this->grant = $grant;
+    }
+
+    /**
+     * Méthode statique qui transforme un tableau associatif en objet User
+     * @param array $user tableau associatif (BDD requête)
+     * @return User $newUser objet User;
+     */
+    public static function hydrate(array $user): User
+    {
+        //Création d'un objet User
+        $newUser = new User(
+            $user["firstname"],
+            $user["lastname"],
+            $user["email"],
+            $user["password"]
+        );
+        //Set des attributs
+        $newUser->setId($user["id_user"] ?? null);
+        $newUser->setCreatedAt(new \DateTime($user["created_at"] ?? "") ?? null);
+        $newUser->setUpdatedAt(new \DateTime($user["updated_at"] ?? "") ?? null);
+        $newUser->setImgProfil($user["img_profil"] ?? null);
+        $newUser->setGrant($user["grant"] ?? null);
+        
+        //Retourne l'objet User
+        return $newUser;
+    }
+}

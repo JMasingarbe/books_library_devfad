@@ -3,19 +3,35 @@
 namespace App\Controller;
 
 use App\Controller\AbstractController;
+use App\Service\CategoryService;
+use App\Entity\Category;
 
 class CategoryController extends AbstractController
 {
-    public function addCategory() {
+    private CategoryService $categoryService;
 
+    public function __construct()
+    {
+        $this->categoryService = new CategoryService();
+    }
+
+    public function addCategory(): mixed
+    {
+        //Test si le formulaire est soumis
         if (isset($_POST["submit"])) {
-            if (!empty($_POST["category_name"])) {
-                $data["msg"] = "Vous avez ajouté la catégorie " . $_POST["category_name"] . ".";
-            } else {
-                $data["msg"] = "Veuillez remplir le champ.";
-            }
-        } else { $data["msg"] = "";}
+            //Traitement ajout de la categorie
+            $data["msg"] = $this->categoryService->insertCategory();
+        }
+        //Retourner le template + $data["msg"]
+        return $this->render('add_category', 'Ajouter une catégorie', $data ?? []);
+    }
 
-        return $this->render('add_category', 'Catégorie', $data);
+    public function showAllCategorie(): mixed
+    {
+        //Récupération de la liste des categories
+        $categories = $this->categoryService->getAllCategories();
+
+        //Retourner le template + $data (liste des catégories)
+        return $this->render('show_all_categories', 'Liste des catégories', $categories);
     }
 }
