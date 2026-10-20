@@ -14,18 +14,26 @@ $dotenv = Dotenv\Dotenv::createImmutable('../');
 $dotenv->load();
 
 //importer
-
+use App\Controller\HomeController;
+use App\Controller\CategoryController;
 
 //instancier les controllers
-
+$homeController = new HomeController();
+$categoryController = new CategoryController();
 
 //test des valeurs du path
 switch ($path) {
     case '/':
-        echo "Home";
+        $homeController->home();
         break;
     case '/register':
         echo "register";
+        break;
+    case '/category/new':
+        $categoryController->addCategory();
+        break;
+    case '/categories':
+        $categoryController->showAllCategorie();
         break;
     default:
         echo "Erreur 404";
