@@ -4,15 +4,27 @@
 	</ul>
 	<ul>
 		<li><a href="/">Accueil</a></li>
-		<li><a href="/categories">Liste des catégories</a></li>
 		<!-- Route déconnectée -->
 		<?php if (!isset($_SESSION["user"]["id"])) : ?>
 			<li><a href="/register">Inscription</a></li>
 			<li><a href="/login">Connexion</a></li>
 		<!-- Route connectée-->
 		<?php else : ?>
+<<<<<<< Updated upstream
 			<li><a href="/category/new">Ajouter une catégorie</a></li>
+=======
+			<!-- Route Admin -->
+			<?php if (($_SESSION["user"]["grant"] ?? '') === 'ROLE_ADMIN') : ?>
+				<li><a href="/category/new">Ajouter une catégorie</a></li>
+			<?php endif ?>
+			<!-- Route User -->
+			<?php if (($_SESSION["user"]["grant"] ?? '') === 'ROLE_USER') : ?>
+			<?php endif ?>
+>>>>>>> Stashed changes
 			<?= htmlspecialchars($_SESSION["user"]["firstname"] . " connecté ",  ENT_QUOTES, 'UTF-8') ?>
+			<!-- Routes connectées-->
+			<li><a href="/categories">Liste des catégories</a></li>
+			<li><a href="/book/new">Ajouter un livre</a></li>
 			<li><a href="/logout">Déconnexion</a></li>
 		<?php endif ?>
 	</ul>

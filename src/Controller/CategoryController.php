@@ -28,6 +28,13 @@ class CategoryController extends AbstractController
 
     public function showAllCategorie(): mixed
     {
+        //Test si non connecté
+        if (!isset($_SESSION["user"]["id"])) {
+            //redirection vers la route de connexion
+            header('Location:/login');
+            exit;
+        }
+        
         //Récupération de la liste des categories
         $categories = $this->categoryService->getAllCategories();
 

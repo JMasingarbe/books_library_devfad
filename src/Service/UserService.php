@@ -63,6 +63,9 @@ class UserService
 
         //Setter le mot de passe hashé
         $newUser->setPassword($hash);
+        
+        //Setter le role
+        $newUser->setGrant("ROLE_USER");
 
         //Ajouter en BDD le compte
         $this->userRepository->create($newUser);

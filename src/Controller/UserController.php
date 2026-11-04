@@ -21,6 +21,7 @@ class UserController extends AbstractController
         if (isset($_SESSION["user"])) {
             header('Location:/');
         }
+        
         //Tester si le formulaire est soumis
         if (isset($_POST["submit"])) {
             $data["msg"] = $this->userService->insertUser();
