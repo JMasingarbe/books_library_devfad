@@ -35,6 +35,34 @@ class CategoryController extends AbstractController
             exit;
         }
         
+<<<<<<< Updated upstream
+=======
+        //Test droit ROLE_ADMIN
+        if (($_SESSION["user"]["grant"] ?? '') != 'ROLE_ADMIN') {
+            http_response_code(403);
+            return $this->render('error_403', '403');
+        }
+
+        //Test si le formulaire est soumis
+        if (isset($_POST["submit"])) {
+            //Traitement ajout de la categorie
+            $data = $this->categoryService->insertCategory();
+        }
+        
+        //Retourner le template + $data["msg"]
+        return $this->render('add_category', 'Ajouter une catégorie', $data ?? []);
+    }
+
+    public function showAllCategorie(): mixed
+    {
+        //Test si non connecté
+        if (!isset($_SESSION["user"]["id"])) {
+            //redirection vers la route de connexion
+            header('Location:/login');
+            exit;
+        }
+        
+>>>>>>> Stashed changes
         //Récupération de la liste des categories
         $categories = $this->categoryService->getAllCategories();
 
