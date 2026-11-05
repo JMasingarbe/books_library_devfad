@@ -48,6 +48,7 @@ class CategoryController extends AbstractController
             header('Location:/login');
             exit;
         }
+        
         //Test droit ROLE_ADMIN
         if (($_SESSION["user"]["grant"] ?? '') != 'ROLE_ADMIN') {
             http_response_code(403);

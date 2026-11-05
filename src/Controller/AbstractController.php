@@ -24,7 +24,7 @@ abstract class AbstractController
      */
     protected function renderComponent(string $component, array $data = []): void
     {
-        include __DIR__ . "/../../templates/components/component_" . $component . ".php";
+        include __DIR__ . "/../../template/component/component_" . $component . ".php";
     }
 
     /**
