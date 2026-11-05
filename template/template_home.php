@@ -11,13 +11,7 @@
 
 <body>
     <?php include 'component/navbar.php'; ?>
-<<<<<<< Updated upstream
-=======
-        
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     <main class="container-fluid">
         <h1>Bienvenue sur Book Library</h1>
     </main>

@@ -13,13 +13,13 @@
 			<!-- Route Admin -->
 			<?php if (($_SESSION["user"]["grant"] ?? '') === 'ROLE_ADMIN') : ?>
 				<li><a href="/category/new">Ajouter une catégorie</a></li>
+				<li><a href="/categories">Liste des catégories</a></li>
 			<?php endif ?>
 			<!-- Route User -->
 			<?php if (($_SESSION["user"]["grant"] ?? '') === 'ROLE_USER') : ?>
 			<?php endif ?>
 			<?= htmlspecialchars($_SESSION["user"]["firstname"] . " connecté ",  ENT_QUOTES, 'UTF-8') ?>
 			<!-- Routes connectées-->
-			<li><a href="/categories">Liste des catégories</a></li>
 			<li><a href="/book/new">Ajouter un livre</a></li>
 			<li><a href="/logout">Déconnexion</a></li>
 		<?php endif ?>
