@@ -55,13 +55,9 @@ class CategoryController extends AbstractController
             return $this->render('error_403', '403');
         }
 
-        //Test si le formulaire est soumis
-        if (isset($_POST["submit"])) {
-            //Traitement ajout de la categorie
-            $data = $this->categoryService->insertCategory();
-        }
-
+        $data = $this->categoryService->getAllCategories();
+        
         //Retourner le template + $data["msg"]
-        return $this->render('add_category', 'Ajouter une catégorie', $data ?? []);
+        return $this->render('show_all_categories', 'Liste des catégories', $data ?? []);
     }
 }
