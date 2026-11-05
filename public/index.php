@@ -18,12 +18,14 @@ use App\Controller\HomeController;
 use App\Controller\CategoryController;
 use App\Controller\UserController;
 use App\Controller\BookController;
+use App\Controller\LendingController;
 
 //instancier les controllers
 $homeController = new HomeController();
 $categoryController = new CategoryController();
 $userController = new UserController();
 $bookController = new BookController();
+$lendingController = new LendingController();
 
 //test des valeurs du path
 switch ($path) {
@@ -50,6 +52,9 @@ switch ($path) {
         break;
     case '/books':
         $bookController->showAllBooks();
+        break;
+    case '/lending/new':
+        $lendingController->borrowBook();
         break;
     default:
         echo "Erreur 404";
