@@ -30,6 +30,11 @@ class LendingController extends AbstractController
             header('Location:/');
         }
 
-        return $this->render('lending', 'Emprunt', $data = []);
+        if (!$this->isCsrfTokenValid($_POST)) {
+            header('Location:/books');
+            exit;
+        }
+
+        return $this->render('lending_result', 'Emprunt', $data = []);
     }
 }

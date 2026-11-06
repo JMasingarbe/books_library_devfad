@@ -38,6 +38,12 @@
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>
+
+                    <form action="/lending/new" method="post">
+                        <input type="text" name="book_id" value="<?= htmlspecialchars($book->getId() ?? '', ENT_QUOTES, 'UTF-8') ?>" hidden>
+                        <input type="text" name="csrf_token" value="<?= htmlspecialchars($_SESSION["csrf_token"], ENT_QUOTES, 'UTF-8') ?>" hidden>
+                        <button type="submit">Emprunter</button>
+                    </form>
                 </article>
             <?php endforeach; ?>
         </section>

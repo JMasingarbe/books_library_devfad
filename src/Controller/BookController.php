@@ -53,6 +53,8 @@ class BookController extends AbstractController
             exit;
         }
 
+        $this->getCsrfToken();
+
         $books = $this->bookService->getAllbooks();
         
         return $this->render('show_all_books', 'liste des livres', $books);

@@ -10,9 +10,14 @@
 </head>
 
 <body>
+    <?php include 'component/navbar.php'; ?>
+    
     <main class="container-fluid">
         <h1>Demande d’emprunt reçue</h1>
-        <a href="/">retourner à l'accueil</a>
+        <p>Livre = <?= $_POST['book_id'] ?></p>
+        <p>Livre = <?= $_SESSION['user']['id'] ?></p>
+        <a href="/books">Revoir les livres</a>
+        <a href="">Vos emprunts</a>
     </main>
 </body>
 
